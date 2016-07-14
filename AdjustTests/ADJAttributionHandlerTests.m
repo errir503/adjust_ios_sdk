@@ -54,7 +54,8 @@
 
     ADJConfig * config = [ADJConfig configWithAppToken:@"qwerty123456" environment:ADJEnvironmentSandbox];
 
-    self.activityHandlerMock = [[ADJActivityHandlerMock alloc] initWithConfig:config];
+    self.activityHandlerMock = [[ADJActivityHandlerMock alloc] initWithConfig:config
+                                                sessionParametersActionsArray:nil];
     [self savePackages:config];
     [NSURLConnection reset];
 }
@@ -74,7 +75,7 @@
     [ADJTestsUtil deleteFile:@"AdjustIoActivityState" logger:self.loggerMock];
     [ADJTestsUtil deleteFile:@"AdjustIoAttribution" logger:self.loggerMock];
 
-    id<ADJActivityHandler> activityHandler = [ADJActivityHandler handlerWithConfig:config];
+    id<ADJActivityHandler> activityHandler = [ADJActivityHandler handlerWithConfig:config sessionParametersActionsArray:nil];
     [activityHandler applicationDidBecomeActive];
     [NSThread sleepForTimeInterval:5.0];
 
